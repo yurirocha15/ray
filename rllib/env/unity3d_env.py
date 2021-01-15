@@ -78,7 +78,8 @@ class Unity3DEnv(MultiAgentEnv):
             # environments (num_workers >> 1). Otherwise, would lead to port
             # conflicts sometimes.
             time.sleep(random.randint(1, 10))
-            port_ = port or (self._BASE_PORT_ENVIRONMENT if file_name else self._BASE_PORT_EDITOR)
+            port_ = port or (self._BASE_PORT_ENVIRONMENT
+                             if file_name else self._BASE_PORT_EDITOR)
             try:
                 self.unity_env = UnityEnvironment(
                     file_name=file_name,
@@ -88,7 +89,8 @@ class Unity3DEnv(MultiAgentEnv):
                     no_graphics=no_graphics,
                     timeout_wait=timeout_wait,
                 )
-                print("Created UnityEnvironment for port {}".format(port_ + self._WORKER_ID))
+                print("Created UnityEnvironment for port {}".format(
+                    port_ + self._WORKER_ID))
             except mlagents_envs.exception.UnityWorkerInUseException:
                 pass
             else:
